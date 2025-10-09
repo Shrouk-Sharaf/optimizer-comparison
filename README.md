@@ -4,7 +4,7 @@ An interactive web-based visualization tool that demonstrates the performance di
 
 ## Live Demo
 
-[**View Live Demo**](https://Shrouk-Sharaf.github.io/optimizer-comparison/)
+[**OptimizerComparison.com**](https://Shrouk-Sharaf.github.io/optimizer-comparison/)
 
 ## Overview
 

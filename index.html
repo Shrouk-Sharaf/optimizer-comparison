@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optimizer Comparison: SGD vs Adam</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Optimizer Comparison: SGD vs Adam</h1>
+            <p>Visualize the performance differences between these popular optimization algorithms</p>
+        </header>
+
+        <div class="controls">
+            <div class="control-group">
+                <label for="learningRateSGD">SGD Learning Rate (α):</label>
+                <input type="range" id="learningRateSGD" min="0.01" max="0.5" step="0.01" value="0.1">
+                <span id="lrSGDValue">0.1</span>
+            </div>
+            <div class="control-group">
+                <label for="learningRateAdam">Adam Learning Rate (α):</label>
+                <input type="range" id="learningRateAdam" min="0.0001" max="0.01" step="0.0001" value="0.001">
+                <span id="lrAdamValue">0.001</span>
+            </div>
+            <div class="control-group">
+                <label for="momentum">Momentum (β):</label>
+                <input type="range" id="momentum" min="0.5" max="0.99" step="0.01" value="0.9">
+                <span id="momentumValue">0.9</span>
+            </div>
+            <button id="trainBtn">Start Training</button>
+            <button id="resetBtn">Reset</button>
+        </div>
+
+        <div class="charts-container">
+            <div class="chart-wrapper">
+                <h3>Training Loss Over Time</h3>
+                <canvas id="lossChart"></canvas>
+            </div>
+            <div class="chart-wrapper">
+                <h3>Accuracy Over Time</h3>
+                <canvas id="accuracyChart"></canvas>
+            </div>
+        </div>
+
+        <div class="comparison-table">
+            <h3>Key Differences</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Aspect</th>
+                        <th>SGD with Momentum</th>
+                        <th>Adam</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Convergence Speed</td>
+                        <td>Slower, steady</td>
+                        <td>Fast initial convergence</td>
+                    </tr>
+                    <tr>
+                        <td>Final Performance</td>
+                        <td>Often better generalization</td>
+                        <td>May plateau earlier</td>
+                    </tr>
+                    <tr>
+                        <td>Hyperparameters</td>
+                        <td>Learning rate, Momentum</td>
+                        <td>Learning rate, β₁, β₂, ε</td>
+                    </tr>
+                    <tr>
+                        <td>Best Use Cases</td>
+                        <td>Well-tuned models, final training</td>
+                        <td>Quick prototyping, sparse data</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="explanation">
+            <h3>How They Work</h3>
+            <div class="algorithms">
+                <div class="algorithm">
+                    <h4>SGD with Momentum</h4>
+                    <p>Uses exponentially weighted average of past gradients to accelerate convergence and reduce oscillations.</p>
+                    <code>vₜ = β·vₜ₋₁ + (1-β)·∇J(θₜ)<br>θₜ₊₁ = θₜ - α·vₜ</code>
+                </div>
+                <div class="algorithm">
+                    <h4>Adam (Adaptive Moment Estimation)</h4>
+                    <p>Computes adaptive learning rates for each parameter using estimates of first and second moments of gradients.</p>
+                    <code>mₜ = β₁·mₜ₋₁ + (1-β₁)·gₜ<br>vₜ = β₂·vₜ₋₁ + (1-β₂)·gₜ²<br>θₜ₊₁ = θₜ - α·m̂ₜ/(√v̂ₜ+ε)</code>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
